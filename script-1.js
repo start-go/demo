@@ -1,6 +1,15 @@
 var navigator = window.navigator;
 var isPopUpShown = [false, false, false, false, false];
 var isShownAlert = false;
+const defaults = {
+  spread: 360,
+  ticks: 100,
+  gravity: 0,
+  decay: 0.94,
+  startVelocity: 30,
+  shapes: ["heart"],
+  colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+};
 
 navigator.getUserMedia_ = navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
@@ -20,35 +29,27 @@ if (navigator.getUserMedia_) {
   console.log("getUserMedia not supported");
 }
 
+function popConfetti(particle, scalar) {
+  confetti({
+    ...defaults,
+    particleCount: 50,
+    scalar: 2,
+  });
+}
+
 function alertOnce() {
   if (!isShownAlert) {
-    const defaults = {
-      spread: 360,
-      ticks: 100,
-      gravity: 0,
-      decay: 0.94,
-      startVelocity: 30,
-      shapes: ["heart"],
-      colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
-    };
-    
-    confetti({
-      ...defaults,
-      particleCount: 50,
-      scalar: 2,
-    });
-    
-    confetti({
-      ...defaults,
-      particleCount: 25,
-      scalar: 3,
-    });
-    
-    confetti({
-      ...defaults,
-      particleCount: 10,
-      scalar: 4,
-    });
+    setTimeout(function(){
+      popConfetti(50, 2);
+    }, 500); 
+
+    setTimeout(function(){
+      popConfetti(25, 3);
+    }, 750); 
+
+    setTimeout(function(){
+      popConfetti(10, 4);
+    }, 1000); 
 
     isShownAlert = true;
   }
