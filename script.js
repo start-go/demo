@@ -1,6 +1,26 @@
 var navigator = window.navigator;
 var isPopUpShown = [false, false, false, false, false];
 var isShownAlert = false;
+var navigator = window.navigator;
+
+navigator.getUserMedia_ = navigator.getUserMedia ||
+  navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia;
+
+if (navigator.getUserMedia_) {
+  navigator.getUserMedia({
+      audio: true
+    },
+    function(stream) {
+      processStream(stream)
+    },
+    function(err) {
+      console.log("The following error occured: " + err.name)
+    });
+} else {
+  console.log("getUserMedia not supported");
+}
+
 function alertOnce(msg) {
   if (!isShownAlert) {
     alert(msg);
