@@ -45,11 +45,11 @@ function alertOnce() {
 
     setTimeout(function(){
       popConfetti(25, 3);
-    }, 750); 
+    }, 1500); 
 
     setTimeout(function(){
       popConfetti(10, 4);
-    }, 1000); 
+    }, 2500); 
 
     isShownAlert = true;
   }
