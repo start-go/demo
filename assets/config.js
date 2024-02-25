@@ -37,3 +37,33 @@ function formValueToBase64() {
     // Encode JSON object to base64
     return btoa(JSON.stringify(config));
 }
+
+function copyURL() {
+    const encodedConfig = formValueToBase64();
+    const fullUrl = removeLastPath(window.location.href) + "/index.html?config=" + encodeURIComponent(encodedConfig);
+
+    console.log(fullUrl);
+
+    copyToClipboard(fullUrl);
+}
+
+function removeLastPath(url) {
+    const parts = url.split("/");
+    parts.pop();
+    return parts.join("/");
+  }
+
+
+function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+      return;
+    }
+    
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard successfully!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text to clipboard:", err);
+      });
+}
