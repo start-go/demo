@@ -32,8 +32,6 @@ const confettiDefaults = {
     shapes: ["heart"],
     colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
 };
-const confettiDuration = 15 * 1000;
-const confettiAnimationEnd = Date.now() + duration;
 
 
 function main() {
@@ -53,6 +51,9 @@ function randomInRange(min, max) {
 }
 
 function popConfetti() {
+    const confettiDuration = 10 * 1000;
+    const confettiAnimationEnd = Date.now() + confettiDuration;
+
     const interval = setInterval(function() {
         const timeLeft = confettiAnimationEnd - Date.now();
       
@@ -75,7 +76,7 @@ function popConfetti() {
             origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
           })
         );
-    }, 750);
+    }, 500);
 }
 
 function alertOnce() {
