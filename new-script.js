@@ -96,6 +96,9 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         showPopUp(fire2, 2);
         showPopUp(fire3, 3);
         showPopUp(fire4, 4);
+
+        clearInterval(intervalId);
+        microphone.stop();
       }
     }, 100);
 
