@@ -321,6 +321,12 @@ z-index: 1;
   text-align: center;
 }
 
+.logger {
+  bottom: 5vmin;
+  position: absolute;
+  text-align: center;
+}
+
 @keyframes zoom-wiggle {
   from {
     transform: scale(0);
