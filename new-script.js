@@ -88,7 +88,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
       console.log(frequencyData.length, average)
 
-      if (average > 50) {
+      if (average > 35) {
         showPopUp(fire0, 0);
         showPopUp(fire1, 1);
         showPopUp(fire2, 2);
