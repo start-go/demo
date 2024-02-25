@@ -14,6 +14,7 @@ const showLog = Boolean(parsedConfig.showLog) || false;
 const title = parsedConfig.title || "This is title";
 const confettiSec = parsedConfig.confettiDuration || 10;
 const confettiInterval = parsedConfig.confettiInterval || 250;
+const hideCake = Boolean(parsedConfig.hideCake) || false;
 
 // init element
 const cake = document.getElementById("cake");
@@ -42,7 +43,7 @@ function main() {
 
     popText.innerText = message;
 
-    if (showLog) {
+    if (hideCake && cake !== null) {
         cake.style.display = "none";
     }
 
@@ -93,7 +94,10 @@ function alertOnce() {
 }
   
 function showPopUp(target, index) {
-    target.style.display = "none";
+    if (target !== null) {
+        target.style.display = "none";
+    }
+    
     isPopUpShown[index] = true;
   
     if (isPopUpShown[0] && isPopUpShown[1] && isPopUpShown[2] && isPopUpShown[3] && isPopUpShown[4]) {

@@ -9,7 +9,7 @@ function handleSubmit(event) {
 
 function changeIframeUrl() {
     const encodedConfig = formValueToBase64();
-    
+
     document.getElementById("preview-iframe").src = "index.html?config=" + encodeURIComponent(encodedConfig);
 }
 
@@ -17,10 +17,11 @@ function formValueToBase64() {
     // Get form values
     const title = document.getElementById("title").value;
     const message = document.getElementById("message").value;
-    const averageAudioFrequency = parseFloat(document.getElementById("averageAudioFrequency").value);
-    const showLog = document.getElementById("showLog").checked;
-    const confettiDuration = parseFloat(document.getElementById("confettiDuration").value);
-    const confettiInterval = parseFloat(document.getElementById("confettiInterval").value);
+    const averageAudioFrequency = parseFloat(document.getElementById("average-audio-frequency").value);
+    const confettiDuration = parseFloat(document.getElementById("confetti-duration").value);
+    const confettiInterval = parseFloat(document.getElementById("confetti-interval").value);
+    const showLog = document.getElementById("show-log").checked;
+    const hideCake = document.getElementById("hide-cake").checked;
   
     // Create JSON object
     const config = {
@@ -28,6 +29,7 @@ function formValueToBase64() {
       message,
       averageAudioFrequency,
       showLog,
+      hideCake,
       confettiDuration,
       confettiInterval
     };

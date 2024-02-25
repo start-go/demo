@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-gray-900 antialiased leading-tight">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,36 +13,82 @@
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-        <form id="config-form">
-          <div class="form-control">
-            <label for="title">Title</label>
-            <input type="text" id="title" class="input" placeholder="This is title" value="This is title">
-          </div>
-          <div class="form-control">
-            <label for="message">Message</label>
-            <input type="text" id="message" class="input" placeholder="This is message" value="This is message">
-          </div>
-          <div class="form-control">
-            <label for="averageAudioFrequency">Average Audio Frequency</label>
-            <input type="number" id="averageAudioFrequency" class="input" value="30">
-          </div>
-          <div class="form-check">
-            <input type="checkbox" id="showLog" class="form-check-input">
-            <label for="showLog" class="form-check-label">Show log</label>
-          </div>
-          <div class="form-control">
-            <label for="confettiDuration">Confetti duration (seconds)</label>
-            <input type="number" id="confettiDuration" class="input" value="5">
-          </div>
-          <div class="form-control">
-            <label for="confettiInterval">Confetti interval (ms)</label>
-            <input type="number" id="confettiInterval" class="input" value="500">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="button" class="btn btn-primary mt-2" onclick="changeIframeUrl()">Preview</button>
-        </form>
-        <iframe id="preview-iframe" src="" style="width: 70vw; height: 100vh;"></iframe>
+    <body class="min-h-screen bg-gray-100">
+        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            </svg>
+        </button>
+        
+        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            <a href="#" class="flex items-center ps-2.5 mb-5">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Config</span>
+            </a>
+            <form id="config-form">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <label class="label">
+                        <span class="text-base label-text">Average Audio Frequency</span>
+                    </label>
+                    <input id="average-audio-frequency" type="number" placeholder="30" class="w-full input input-bordered input-primary text-white" value="30"/>
+                </li>
+                <li>
+                    <label class="label">
+                        <span class="text-base label-text">Confetti Duration (seconds) </span>
+                    </label>
+                    <input id="confetti-duration" type="number" placeholder="5" class="w-full input input-bordered input-primary text-white" value="5"/>
+                </li>
+                <li>
+                    <label class="label">
+                        <span class="text-base label-text">Confetti Interval (ms) </span>
+                    </label>
+                    <input id="confetti-interval" type="number" placeholder="500" class="w-full input input-bordered input-primary text-white" value="500"/>
+                </li>
+                <li>
+                    <label class="label">
+                        <span class="text-base label-text">Title</span>
+                    </label>
+                    <input id="title" type="text" placeholder="Put your page title" class="w-full input input-bordered input-primary text-white" value="This is title"/>
+                </li>
+                <li>
+                    <label class="label">
+                        <span class="text-base label-text">Message</span>
+                    </label>
+                    <textarea id="message" class="form-textarea w-full input input-bordered input-primary text-white" rows="5" placeholder="This is message">This is message</textarea>
+                </li>
+                <ul class="flex items-center justify-center space-x-8">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="show-log" class="checkbox text-white">
+                        <span class="ml-2 text-white text-sm font-medium">Show log</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="hide-cake" class="checkbox text-white">
+                        <span class="ml-2 text-white text-sm font-medium">Hide Cake</span>
+                    </label>
+                </ul>
+                <ul>
+                    <button class="btn btn-block btn-primary">Submit</button>
+                    <button type="button" data-drawer-target="logo-sidebar" data-drawer-hide="logo-sidebar" aria-controls="logo-sidebar" class="btn btn-block mt-2" onclick="changeIframeUrl()">Preview</button>
+                </ul>
+            </ul>
+            </form>
+            </div>
+        </aside>
+        
+        <div class="container flex flex-wrap p-4 lg:ml-96 items-center justify-center">
+            <div class="mockup-phone">
+                <div class="camera"></div> 
+                <div class="display flex items-center justify-center">
+                    <div class="artboard artboard-demo phone-1">
+                        <iframe id="preview-iframe" src="" style="height: 100%; width: 100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
         <script src="assets/config.js"></script>
         <script>
           const form = document.getElementById("config-form");
