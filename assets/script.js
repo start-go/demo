@@ -7,9 +7,10 @@ const queryString = window.location.search;
 
 // get params
 const urlParams = new URLSearchParams(queryString);
-const avgTiggered = Number(urlParams.get('trigger')) || 30;
-const message = String(urlParams.get('msg')) || "Default";
-const showLog = Boolean(urlParams.get('log')) || false;
+const avgTiggered = Number(urlParams.get('n')) || 30;
+const message = String(urlParams.get('m')) || "Default";
+const showLog = Boolean(urlParams.get('l')) || false;
+const title = urlParams.get('t') || "This is title";
 
 // init element
 const cake = document.getElementById("cake");
@@ -33,6 +34,8 @@ const defaults = {
 
 
 function main() {
+    document.title = title;
+
     popText.innerText = message;
 
     if (showLog) {
