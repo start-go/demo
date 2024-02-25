@@ -144,4 +144,19 @@ function captureMic() {
     });
 }
 
+function parseBase64Json(base64Json) {
+    try {
+      // Decode base64 string
+      const decodedString = atob(base64Json);
+  
+      // Parse decoded string as JSON
+      const parsedJson = JSON.parse(decodedString);
+  
+      return parsedJson;
+    } catch (error) {
+      console.error("Error parsing base64 JSON:", error);
+      return null; // Or handle the error differently as needed
+    }
+}
+
 main();
