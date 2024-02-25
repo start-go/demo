@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico" sizes="16x16 32x32">
+        <link rel="icon" type="image/png" href="assets/icon/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="assets/icon/favicon-32x32.png" sizes="32x32">
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+        <title>Configure Page</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <form id="config-form">
+          <div class="form-control">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="input" placeholder="This is title" value="This is title">
+          </div>
+          <div class="form-control">
+            <label for="message">Message</label>
+            <input type="text" id="message" class="input" placeholder="This is message" value="This is message">
+          </div>
+          <div class="form-control">
+            <label for="averageAudioFrequency">Average Audio Frequency</label>
+            <input type="number" id="averageAudioFrequency" class="input" value="30">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="showLog" class="form-check-input">
+            <label for="showLog" class="form-check-label">Show log</label>
+          </div>
+          <div class="form-control">
+            <label for="confettiDuration">Confetti duration (seconds)</label>
+            <input type="number" id="confettiDuration" class="input" value="5">
+          </div>
+          <div class="form-control">
+            <label for="confettiInterval">Confetti interval (ms)</label>
+            <input type="number" id="confettiInterval" class="input" value="500">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-primary mt-2" onclick="changeIframeUrl()">Preview</button>
+        </form>
+        <iframe id="preview-iframe" src="" style="width: 70vw; height: 100vh;"></iframe>
+        <script src="assets/config.js"></script>
+        <script>
+          const form = document.getElementById("config-form");
+          form.addEventListener("submit", handleSubmit);
+        </script>
+    </body>
+</html>

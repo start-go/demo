@@ -3,16 +3,17 @@ let isShownAlert = false;
 
 // init browser requirement
 const navigator = window.navigator;
-const queryString = window.location.search;
 
 // get params
-const urlParams = new URLSearchParams(queryString);
-const avgTiggered = Number(urlParams.get('n')) || 30;
-const message = String(urlParams.get('m')) || "Default";
-const showLog = Boolean(urlParams.get('l')) || false;
-const title = urlParams.get('t') || "This is title";
-const confettiSec = Number(urlParams.get('cfs')) || 10;
-const confettiInterval = Number(urlParams.get('cfi')) || 250;
+const base64Config = new URLSearchParams(window.location.search).get("config");
+const parsedConfig = parseBase64Json(decodeURIComponent(base64Config));
+
+const avgTiggered = Number(parsedConfig.averageAudioFrequency) || 30;
+const message = String(parsedConfig.message) || "Default";
+const showLog = Boolean(parsedConfig.showLog) || false;
+const title = parsedConfig.title || "This is title";
+const confettiSec = parsedConfig.confettiDuration || 10;
+const confettiInterval = parsedConfig.confettiInterval || 250;
 
 // init element
 const cake = document.getElementById("cake");
@@ -142,6 +143,5 @@ function captureMic() {
         console.error("Error accessing microphone:", error);
     });
 }
-
 
 main();
