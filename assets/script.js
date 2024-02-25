@@ -22,7 +22,8 @@ const fire4 = document.getElementById("fire4");
 const popText = document.getElementById("pop-text");
 const logger = document.getElementById("logger");
 
-const defaults = {
+// confetti config
+const confettiDefaults = {
     spread: 360,
     ticks: 100,
     gravity: 0,
@@ -31,6 +32,8 @@ const defaults = {
     shapes: ["heart"],
     colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
 };
+const confettiDuration = 15 * 1000;
+const confettiAnimationEnd = Date.now() + duration;
 
 
 function main() {
@@ -45,29 +48,41 @@ function main() {
     captureMic();
 }
 
-function popConfetti(particle, scalar) {
-    confetti({
-        ...defaults,
-        particleCount: 50,
-        scalar: 2,
-    });
+function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function popConfetti() {
+    const interval = setInterval(function() {
+        const timeLeft = confettiAnimationEnd - Date.now();
+      
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+      
+        const particleCount = 50 * (timeLeft / confettiDuration);
+      
+        // since particles fall down, start a bit higher than random
+        confetti(
+          Object.assign({}, confettiDefaults, {
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          })
+        );
+        confetti(
+          Object.assign({}, confettiDefaults, {
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          })
+        );
+    }, 750);
 }
 
 function alertOnce() {
     if (!isShownAlert) {
         isShownAlert = true;
 
-        setTimeout(function(){
-            popConfetti(50, 2);
-        }, 500); 
-    
-        setTimeout(function(){
-            popConfetti(25, 3);
-        }, 1500); 
-    
-        setTimeout(function(){
-            popConfetti(10, 4);
-        }, 2500); 
+        popConfetti();
 
         popText.style.display = "block";      
     }  
