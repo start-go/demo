@@ -11,6 +11,8 @@ const avgTiggered = Number(urlParams.get('n')) || 30;
 const message = String(urlParams.get('m')) || "Default";
 const showLog = Boolean(urlParams.get('l')) || false;
 const title = urlParams.get('t') || "This is title";
+const confettiSec = Number(urlParams.get('cfs')) || 10;
+const confettiInterval = Number(urlParams.get('cfi')) || 250;
 
 // init element
 const cake = document.getElementById("cake");
@@ -51,7 +53,7 @@ function randomInRange(min, max) {
 }
 
 function popConfetti() {
-    const confettiDuration = 10 * 1000;
+    const confettiDuration = confettiSec * 1000;
     const confettiAnimationEnd = Date.now() + confettiDuration;
 
     const interval = setInterval(function() {
@@ -76,7 +78,7 @@ function popConfetti() {
             origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
           })
         );
-    }, 500);
+    }, confettiInterval);
 }
 
 function alertOnce() {
@@ -106,47 +108,34 @@ function captureMic() {
         const microphone = stream.getAudioTracks()[0];
         const source = audioContext.createMediaStreamSource(stream);
         source.connect(analyser);
-
         analyser.fftSize = 2048;
+
         const bufferLength = analyser.frequencyBinCount;
         const frequencyData = new Uint8Array(bufferLength);
-
-        const defaults = {
-            spread: 360,
-            ticks: 100,
-            gravity: 0,
-            decay: 0.94,
-            startVelocity: 30,
-            shapes: ["heart"],
-            colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
-        };
-
-        var flameTimer = 0;
-
         const intervalId = setInterval(() => {
-        analyser.getByteFrequencyData(frequencyData);
-        const average = frequencyData.reduce((acc, val) => acc + val, 0) / frequencyData.length;
+            analyser.getByteFrequencyData(frequencyData);
+            const average = frequencyData.reduce((acc, val) => acc + val, 0) / frequencyData.length;
 
-        if(showLog) {
-            logger.innerText = frequencyData.length + " | " + average + " >= " + avgTiggered
-        }
+            if(showLog) {
+                logger.innerText = frequencyData.length + " | " + average + " >= " + avgTiggered
+            }
 
-        if (average >= avgTiggered) {
-            showPopUp(fire0, 0);
-            showPopUp(fire1, 1);
-            showPopUp(fire2, 2);
-            showPopUp(fire3, 3);
-            showPopUp(fire4, 4);
+            if (average >= avgTiggered) {
+                showPopUp(fire0, 0);
+                showPopUp(fire1, 1);
+                showPopUp(fire2, 2);
+                showPopUp(fire3, 3);
+                showPopUp(fire4, 4);
 
-            clearInterval(intervalId);
-            microphone.stop();
-        }
+                clearInterval(intervalId);
+                microphone.stop();
+            }
         }, 100);
 
         // Stop the analysis when the user closes the browser window/tab
         window.addEventListener("beforeunload", () => {
-        clearInterval(intervalId);
-        microphone.stop();
+            clearInterval(intervalId);
+            microphone.stop();
         });
     })
     .catch(error => {
