@@ -2,41 +2,52 @@ var navigator = window.navigator;
 var isPopUpShown = [false, false, false, false, false];
 var isShownAlert = false;
 
+const fire0 = document.getElementById("fire0");
+const fire1 = document.getElementById("fire1");
+const fire2 = document.getElementById("fire2");
+const fire3 = document.getElementById("fire3");
+const fire4 = document.getElementById("fire4");
+const popText = document.getElementById("pop-text");
 
-function alertOnce() {
-    if (!isShownAlert) {
-      const defaults = {
-        spread: 360,
-        ticks: 100,
-        gravity: 0,
-        decay: 0.94,
-        startVelocity: 30,
-        shapes: ["heart"],
-        colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
-      };
-      
-      confetti({
+const defaults = {
+    spread: 360,
+    ticks: 100,
+    gravity: 0,
+    decay: 0.94,
+    startVelocity: 30,
+    shapes: ["heart"],
+    colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+  };
+
+
+function popConfetti(particle, scalar) {
+    confetti({
         ...defaults,
         particleCount: 50,
         scalar: 2,
-      });
-      
-      confetti({
-        ...defaults,
-        particleCount: 25,
-        scalar: 3,
-      });
-      
-      confetti({
-        ...defaults,
-        particleCount: 10,
-        scalar: 4,
-      });
-  
-      isShownAlert = true;
-    }
-  
-  }
+    });
+}
+
+function alertOnce() {
+    if (!isShownAlert) {
+        isShownAlert = true;
+
+        setTimeout(function(){
+            popConfetti(50, 2);
+            }, 500); 
+        
+            setTimeout(function(){
+            popConfetti(25, 3);
+            }, 1500); 
+        
+            setTimeout(function(){
+            popConfetti(10, 4);
+            }, 2500); 
+
+        popText.style.display = "block";
+            
+    }  
+}
   
   function showPopUp(target, index) {
     target.style.display = "none";
@@ -59,12 +70,6 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     const bufferLength = analyser.frequencyBinCount;
     const frequencyData = new Uint8Array(bufferLength);
 
-    const fire0 = document.getElementById("fire0");
-    const fire1 = document.getElementById("fire1");
-    const fire2 = document.getElementById("fire2");
-    const fire3 = document.getElementById("fire3");
-    const fire4 = document.getElementById("fire4");
-
     const defaults = {
         spread: 360,
         ticks: 100,
@@ -78,33 +83,17 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     var flameTimer = 0;
 
     const intervalId = setInterval(() => {
-      analyser.getByteTimeDomainData(frequencyData);
-      const average = frequencyData.reduce((acc, val) => acc + val, 0) / bufferLength;
+      analyser.getByteFrequencyData(frequencyData);
+      const average = frequencyData.reduce((acc, val) => acc + val, 0) / frequencyData.length;
+
+      console.log(frequencyData.length, average)
 
       if (average > 50) {
-        onBlow(fire0);
-        onBlow(fire1);
-        onBlow(fire2);
-        onBlow(fire3);
-        onBlow(fire4);
-          
-        confetti({
-        ...defaults,
-        particleCount: 50,
-        scalar: 2,
-        });
-        
-        confetti({
-        ...defaults,
-        particleCount: 25,
-        scalar: 3,
-        });
-        
-        confetti({
-        ...defaults,
-        particleCount: 10,
-        scalar: 4,
-        });
+        showPopUp(fire0, 0);
+        showPopUp(fire1, 1);
+        showPopUp(fire2, 2);
+        showPopUp(fire3, 3);
+        showPopUp(fire4, 4);
       }
     }, 100);
 

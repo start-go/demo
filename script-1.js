@@ -97,22 +97,25 @@ function processStream(stream) {
       }
 
       var average = values / length;
+
+      console.log(average);
     
-      if (flameTimer <= 50) flameTimer++;
-      if ((average < 5) && (flameTimer > 50) && (fire4.style.display != "none")) {
-        flameTimer = 0;
-        fire0.style.display = "block";
-        fire1.style.display = "block";
-        fire2.style.display = "block";
-        fire3.style.display = "block";
-        fire4.style.display = "block";
-        isPopUpShown = [false, false, false, false, false];
-      }
+      // if (flameTimer <= 50) flameTimer++;
+      // if ((average < 5) && (flameTimer > 50) && (fire4.style.display != "none")) {
+      //   flameTimer = 0;
+      //   fire0.style.display = "block";
+      //   fire1.style.display = "block";
+      //   fire2.style.display = "block";
+      //   fire3.style.display = "block";
+      //   fire4.style.display = "block";
+      //   isPopUpShown = [false, false, false, false, false];
+      // }
+      
     
-      if (average > 5) showPopUp(fire0,0);
-      if (average > 10) showPopUp(fire1,1);
-      if (average > 15) showPopUp(fire2,2);
-      if (average > 20) showPopUp(fire3,3);
-      if (average > 30) showPopUp(fire4,4);
+      // if (average > 5) showPopUp(fire0,0);
+      // if (average > 10) showPopUp(fire1,1);
+      // if (average > 15) showPopUp(fire2,2);
+      // if (average > 20) showPopUp(fire3,3);
+      // if (average > 30) showPopUp(fire4,4);
     }
 }
