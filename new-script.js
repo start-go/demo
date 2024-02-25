@@ -8,6 +8,7 @@ const fire2 = document.getElementById("fire2");
 const fire3 = document.getElementById("fire3");
 const fire4 = document.getElementById("fire4");
 const popText = document.getElementById("pop-text");
+const logger = document.getElementById("logger");
 
 const defaults = {
     spread: 360,
@@ -86,7 +87,8 @@ navigator.mediaDevices.getUserMedia({ audio: true })
       analyser.getByteFrequencyData(frequencyData);
       const average = frequencyData.reduce((acc, val) => acc + val, 0) / frequencyData.length;
 
-      console.log(frequencyData.length, average)
+      logger.innerText = frequencyData.length + " | " + average
+    //   console.log(frequencyData.length, average)
 
       if (average > 35) {
         showPopUp(fire0, 0);

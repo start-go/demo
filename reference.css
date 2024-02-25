@@ -3261,3 +3261,8 @@ body {
     transform: translateY(0px);
   }
 }
+
+.logger {
+  bottom: 10vmin;
+  text-align: center;
+}
