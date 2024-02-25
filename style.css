@@ -313,7 +313,7 @@ z-index: 1;
 }
 
 .zoom-wiggle {
-  bottom: 40vmin;
+  top: 10vmin;
   position: absolute;
   animation: zoom-wiggle 1s ease-in-out;
   padding: 1vmin;
