@@ -370,9 +370,12 @@ body {
     height: 80%;
     background: var(--primary);
     text-align: center;
-    transition: all 1s ease-in-out;
     box-shadow: 0 0 1vmin var(--shadow-color);
     padding: 4vmin 2vmin;
+    transition-property: bottom, transform;
+    transition-duration: 0.5s, 0.5s;
+    transition-delay: 1s, 1.5s;
+    transition-timing-function: ease-in-out;
   }
 
   .envelope > .letter > .text {
@@ -419,8 +422,8 @@ body {
   }
 
   .flap > .envelope > .letter {
-    animation: letterPop 1s ease-in;
-    transition-delay: 1s;
+    bottom: 175%;
+    transform: scale(2);
   }
 
 .flap > .heart {
@@ -436,18 +439,4 @@ body {
   font-family: "Caveat", cursive;
   font-optical-sizing: auto;
   font-style: normal;
-}
-
-@keyframes letterPop {
-  0% {
-    transform: translateY(0%) scale(1);
-  }
-
-  50% {
-    transform: translateY(-100%) scale(1.4);
-  }
-
-  100% {
-    transform: scale(2);
-  }
 }
