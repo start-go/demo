@@ -421,11 +421,6 @@ body {
     z-index: 0;
   }
 
-  .flap > .envelope > .letter {
-    bottom: 150%;
-    transform: scale(2);
-  }
-
 .flap > .heart {
   transform: rotate(90deg);
   transition-delay: 0.4s;
@@ -439,4 +434,14 @@ body {
   font-family: "Caveat", cursive;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+.letter.open {
+  bottom: 150%;
+  transform: scale(2);
+}
+
+.letter.close {
+  transition-property: bottom, transform;
+  transition-duration: 0.7s, 0.3s;
 }

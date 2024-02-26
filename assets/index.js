@@ -29,8 +29,18 @@ const logger = document.getElementById("logger");
 const canvas = document.getElementById("waveform");
 const ctx = waveform.getContext('2d');
 const envelope = document.querySelector('.envelope-wrapper');
+const letter = document.getElementById('letter');
+
 envelope.addEventListener('click', () => {
     envelope.classList.toggle('flap');
+
+    if (letter.classList.contains("open")) {
+        letter.classList.remove("open");
+        letter.classList.add("close");
+    } else {
+        letter.classList.add("open");
+        letter.classList.remove("close");
+    }
 });
 
 const envelopeContainer = document.getElementById("envelope");
