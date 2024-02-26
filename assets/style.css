@@ -419,8 +419,7 @@ body {
   }
 
   .flap > .envelope > .letter {
-    bottom: 120%;
-    transform: scale(2);
+    animation: letterPop 1s ease-in;
     transition-delay: 1s;
   }
 
@@ -437,4 +436,18 @@ body {
   font-family: "Caveat", cursive;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+@keyframes letterPop {
+  0% {
+    transform: translateY(0%) scale(1);
+  }
+
+  50% {
+    transform: translateY(-100%) scale(1.4);
+  }
+
+  100% {
+    transform: scale(2);
+  }
 }
