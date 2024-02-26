@@ -377,7 +377,7 @@ body {
   .envelope > .letter > .text {
     color: var(--txt-color);
     text-align: left;
-    font-size: 20px;
+    font-size: 10px;
   }
 
   .heart {
@@ -398,7 +398,7 @@ body {
   .heart:after {
     content: "";
     position: absolute;
-    width: 130vmin;
+    width: 3vmin;
     height: 3vmin;
     background-color: var(--heart-color);
     border-radius: 50%;
