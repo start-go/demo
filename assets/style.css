@@ -329,6 +329,7 @@ body {
 .envelope-container > .envelope-wrapper {
   background: var(--bg-envelope-color);
   box-shadow: 0 0 8vmin var(--shadow-color);
+  transition: all 1s ease-in-out;
 }
 
   .envelope-wrapper > .envelope {
@@ -418,8 +419,8 @@ body {
   }
 
   .flap > .envelope > .letter {
-    bottom: 100%;
-    transform: scale(1.4);
+    bottom: 120%;
+    transform: scale(2);
     transition-delay: 1s;
   }
 
@@ -429,8 +430,7 @@ body {
 }
 
 .flap {
-  transform: translateY(30%);
-  transition: all 1s ease-in-out;
+  transform: translateY(75%);
 }
 
 .caveat-family {
