@@ -423,7 +423,7 @@ body {
 }
 
 .flap {
-  transform: translateY(75%);
+  transform: translateY(90%);
 }
 
 .flap > .heart {
@@ -437,7 +437,7 @@ body {
 }
 
 .flap > .envelope > .letter {
-  bottom: 150%;
+  bottom: 175%;
   transform: scale(2.5);
 }
 
