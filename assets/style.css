@@ -418,8 +418,8 @@ body {
   }
 
   .flap > .envelope > .letter {
-    bottom: 100px;
-    transform: scale(1.5);
+    bottom: 100%;
+    transform: scale(1.4);
     transition-delay: 1s;
   }
 
