@@ -32,14 +32,12 @@ const envelope = document.querySelector('.envelope-wrapper');
 const letter = document.getElementById('letter');
 
 envelope.addEventListener('click', () => {
-    envelope.classList.toggle('flap');
-
-    if (letter.classList.contains("open")) {
-        letter.classList.remove("open");
-        letter.classList.add("close");
+    if (envelope.classList.contains("flap")) {
+        envelope.classList.remove("flap");
+        envelope.classList.add("flop");
     } else {
-        letter.classList.add("open");
-        letter.classList.remove("close");
+        envelope.classList.add("flap");
+        envelope.classList.remove("flop");
     }
 });
 

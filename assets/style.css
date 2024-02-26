@@ -332,102 +332,88 @@ body {
   transition: all 1s ease-in-out;
 }
 
-  .envelope-wrapper > .envelope {
-    position: relative;
-    width: 60vmin;
-    height: 46vmin;
-  }
-
-  .envelope-wrapper > .envelope::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    border-top: 26vmin solid var(--envelope-tab);
-    border-right: 30vmin solid transparent;
-    border-left: 30vmin solid transparent;
-    transform-origin: top;
-    transition: all 0.5s ease-in-out 0.7s;
-  }
-
-  .envelope-wrapper > .envelope::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    width: 0;
-    height: 0;
-    border-top: 26vmin solid transparent;
-    border-right: 30vmin solid var(--envelope-cover);
-    border-bottom: 20vmin solid var(--envelope-cover);
-    border-left: 30vmin solid var(--envelope-cover);
-  }
-
-  .envelope > .letter {
-    position: absolute;
-    right: 20%;
-    bottom: 0;
-    width: 60%;
-    height: 80%;
-    background: var(--primary);
-    text-align: center;
-    box-shadow: 0 0 1vmin var(--shadow-color);
-    padding: 4vmin 2vmin;
-    transition-property: bottom, transform;
-    transition-duration: 0.3s, 0.7s;
-    transition-delay: 1s;
-    transition-timing-function: ease-in-out;
-  }
-
-  .envelope > .letter > .text {
-    color: var(--txt-color);
-    text-align: left;
-    font-size: 10px;
-  }
-
-  .heart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 3vmin;
-    height: 3vmin;
-    background: var(--heart-color);
-    z-index: 4;
-    transform: translate(-50%, -20%) rotate(45deg);
-    transition: transform 0.5s ease-in-out 1s;
-    box-shadow: 0 0.2vmin 1.2vmin var(--shadow-color);
-    cursor: pointer;
-  }
-
-  .heart:before, 
-  .heart:after {
-    content: "";
-    position: absolute;
-    width: 3vmin;
-    height: 3vmin;
-    background-color: var(--heart-color);
-    border-radius: 50%;
-  }
-
-  .heart:before {
-    top: -1.5vmin;
-  }
-
-  .heart:after {
-    right: 1.5vmin;
-  }
-
-  .flap > .envelope:before {
-    transform: rotateX(180deg);
-    z-index: 0;
-  }
-
-.flap > .heart {
-  transform: rotate(90deg);
-  transition-delay: 0.4s;
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 60vmin;
+  height: 46vmin;
 }
 
-.flap {
-  transform: translateY(75%);
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 26vmin solid var(--envelope-tab);
+  border-right: 30vmin solid transparent;
+  border-left: 30vmin solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-top: 26vmin solid transparent;
+  border-right: 30vmin solid var(--envelope-cover);
+  border-bottom: 20vmin solid var(--envelope-cover);
+  border-left: 30vmin solid var(--envelope-cover);
+}
+
+.envelope > .letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 60%;
+  height: 80%;
+  background: var(--primary);
+  text-align: center;
+  box-shadow: 0 0 1vmin var(--shadow-color);
+  padding: 4vmin 2vmin;
+  transition-property: bottom, transform;
+  transition-duration: 0.3s, 0.7s;
+  transition-delay: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.envelope > .letter > .text {
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 10px;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3vmin;
+  height: 3vmin;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 0.2vmin 1.2vmin var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before, 
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 3vmin;
+  height: 3vmin;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -1.5vmin;
+}
+
+.heart:after {
+  right: 1.5vmin;
 }
 
 .caveat-family {
@@ -436,12 +422,39 @@ body {
   font-style: normal;
 }
 
-.letter.open {
-  bottom: 150%;
-  transform: scale(2);
+.flap {
+  transform: translateY(75%);
 }
 
-.letter.close {
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.flap > .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap > .envelope > .letter {
+  bottom: 150%;
+  width: 100%;
+}
+
+.flop {
+  transition-delay: 1s;
+}
+
+.flop > .heart {
+  transition-delay: 0.5s;
+}
+
+.flop > .envelope:before {
+  transition-delay: 0.4s;
+}
+
+.flop > .envelope > .letter {
   transition-property: bottom, transform;
   transition-duration: 0.7s, 0.3s;
+  transition-delay: 0s;
 }
