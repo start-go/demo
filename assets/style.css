@@ -372,10 +372,10 @@ body {
     text-align: center;
     box-shadow: 0 0 1vmin var(--shadow-color);
     padding: 4vmin 2vmin;
-    transition-property: bottom, width;
-    transition-duration: 0.5s, 0.5s;
-    transition-delay: 1s, 1.5s;
-    transition-timing-function: ease-in-out, ease-in-out;
+    transition-property: bottom, transform;
+    transition-duration: 0.3s, 0.7s;
+    transition-delay: 1s;
+    transition-timing-function: ease-in-out;
   }
 
   .envelope > .letter > .text {
@@ -423,7 +423,7 @@ body {
 
   .flap > .envelope > .letter {
     bottom: 150%;
-    width: 100%;
+    transform: scale(2);
   }
 
 .flap > .heart {
