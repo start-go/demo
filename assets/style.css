@@ -335,7 +335,6 @@ body {
     position: relative;
     width: 60vmin;
     height: 46vmin;
-    transition: all 0.5s ease-in-out 1s;
   }
 
   .envelope-wrapper > .envelope::before {
@@ -419,18 +418,19 @@ body {
   }
 
   .flap > .envelope > .letter {
+    bottom: 100%;
     transform: scale(1.4);
-    transition-delay: 1.5s;
+    transition-delay: 1s;
   }
 
 .flap > .heart {
   transform: rotate(90deg);
-  transition-duration: 500ms;
   transition-delay: 0.4s;
 }
 
-.flap > .envelope {
-  transform: translateY(1000%);
+.flap {
+  transform: translateY(30%);
+  transition: all 1s ease-in-out;
 }
 
 .caveat-family {
