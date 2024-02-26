@@ -365,8 +365,8 @@ body {
     position: absolute;
     right: 40%;
     bottom: 0;
-    width: 108%;
-    height: 160%;
+    width: 54%;
+    height: 80%;
     background: var(--primary);
     text-align: center;
     transition: all 1s ease-in-out;
