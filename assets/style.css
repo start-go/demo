@@ -438,7 +438,7 @@ body {
 
 .flap > .envelope > .letter {
   bottom: 150%;
-  width: 100%;
+  transform: scale(2);
 }
 
 .flop {
