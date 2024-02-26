@@ -17,14 +17,23 @@ const confettiInterval = parsedConfig.confettiInterval || 250;
 const hideCake = Boolean(parsedConfig.hideCake) || false;
 
 // init element
+const popText = document.getElementById("pop-text");
 const cake = document.getElementById("cake");
 const fire0 = document.getElementById("fire0");
 const fire1 = document.getElementById("fire1");
 const fire2 = document.getElementById("fire2");
 const fire3 = document.getElementById("fire3");
 const fire4 = document.getElementById("fire4");
-const popText = document.getElementById("pop-text");
+const messageField = document.getElementById("message");
 const logger = document.getElementById("logger");
+const canvas = document.getElementById("waveform");
+const ctx = waveform.getContext('2d');
+const envelope = document.querySelector('.envelope-wrapper');
+envelope.addEventListener('click', () => {
+    envelope.classList.toggle('flap');
+});
+
+const envelopeContainer = document.getElementById("envelope");
 
 // confetti config
 const confettiDefaults = {
@@ -40,11 +49,14 @@ const confettiDefaults = {
 
 function main() {
     document.title = title;
-
-    popText.innerText = message;
+    
+    popText.innerText = title;
+    messageField.innerText = message;
 
     if (hideCake && cake !== null) {
         cake.style.display = "none";
+    } else {
+        cake.classList.add('slide-in-bottom');
     }
 
     captureMic();
@@ -86,10 +98,18 @@ function popConfetti() {
 function alertOnce() {
     if (!isShownAlert) {
         isShownAlert = true;
+        
+        cake.classList.remove('slide-in-bottom');
+        cake.classList.add('slide-out-bottom');
 
+        cake.addEventListener('animationend', function() {
+            cake.parentNode.removeChild(cake);
+
+            envelopeContainer.style.display = "block";
+            envelopeContainer.classList.add('scale-up');
+        });
+        
         popConfetti();
-
-        popText.style.display = "block";      
     }  
 }
   
@@ -123,6 +143,18 @@ function captureMic() {
 
             if(showLog) {
                 logger.innerText = frequencyData.length + " | " + average + " >= " + avgTiggered
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw bars based on frequency data
+                const barWidth = canvas.width / frequencyData.length;
+                let x = 0;
+                for (let i = 0; i < frequencyData.length; i++) {
+                    const barHeight = frequencyData[i];
+                    ctx.fillStyle = `hsl(${i * 360 / frequencyData.length}, 100%, 50%)`;
+                    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                    x += barWidth;
+                }
             }
 
             if (average >= avgTiggered) {

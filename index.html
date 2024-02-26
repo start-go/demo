@@ -10,11 +10,25 @@
         <title>This is Page</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>
-      <h2 id="pop-text" class="honk-default zoom-wiggle" style="display: none;">This text will animate per character</h2>
+      <div id="envelope" class="envelope-container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong id="pop-text" class="caveat-family"></strong>
+                        <p id="message" class="caveat-family"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+    </div>
       <div id="cake" class="cake">
           <div class="tops">
             <div class="cherry"></div>
@@ -41,6 +55,7 @@
           <div class="plate"></div>
       </div>
       <p id="logger" class="logger"></p>
+      <canvas id="waveform" height="100px" class="logger"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
       <script src="assets/index.js"></script>
     </body>

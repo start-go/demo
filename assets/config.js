@@ -10,6 +10,8 @@ function handleSubmit(event) {
 function changeIframeUrl() {
     const encodedConfig = formValueToBase64();
 
+    document.getElementById("copy-btn").style.display = "block"
+
     document.getElementById("preview-iframe").src = "index.html?config=" + encodeURIComponent(encodedConfig);
 }
 
