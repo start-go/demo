@@ -363,10 +363,9 @@ body {
 
   .envelope > .letter {
     position: absolute;
-    right: 7%;
-    left: 7%;
+    right: 20%;
     bottom: 0;
-    width: 54%;
+    width: 60%;
     height: 80%;
     background: var(--primary);
     text-align: center;
