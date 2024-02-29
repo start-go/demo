@@ -381,13 +381,13 @@ body {
 .text-title {
   color: var(--txt-color);
   text-align: left;
-  font-size: 7vmin;
+  font-size: 2vmin;
 }
 
 .text-desc {
   color: var(--txt-color);
   text-align: left;
-  font-size: 5vmin;
+  font-size: 1.5vmin;
 }
 
 .heart {
@@ -444,7 +444,7 @@ body {
 
 .flap > .envelope > .letter {
   bottom: 175%;
-  transform: scale(2.1);
+  transform: scale(2);
 }
 
 .flop {
