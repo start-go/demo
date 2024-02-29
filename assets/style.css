@@ -63,7 +63,7 @@ body {
 }
 
 .slide-out-bottom {
-  animation: slideOutBottom 500ms ease-out;
+  animation: slideOutBottom 500ms 1s ease-out;
 }
 
 .slide-in-bottom {
@@ -378,10 +378,16 @@ body {
   transition-timing-function: ease-in-out;
 }
 
-.envelope > .letter > .text {
+.text-title {
   color: var(--txt-color);
   text-align: left;
-  font-size: 10px;
+  font-size: 0.7vmin;
+}
+
+.text-desc {
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 0.5vmin;
 }
 
 .heart {
@@ -438,7 +444,7 @@ body {
 
 .flap > .envelope > .letter {
   bottom: 175%;
-  transform: scale(2.5);
+  transform: scale(2.1);
 }
 
 .flop {
