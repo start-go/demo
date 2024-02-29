@@ -63,11 +63,11 @@ body {
 }
 
 .slide-out-bottom {
-  animation: slideOutBottom 500ms 1s ease-out;
+  animation: 500ms ease-out 1s slideOutBottom;
 }
 
 .slide-in-bottom {
-  animation: slideInFromBottom 500ms ease-in-out;
+  animation: 500ms ease-in-out 1s slideInFromBottom;
 }
 
 .cake {
@@ -381,13 +381,13 @@ body {
 .text-title {
   color: var(--txt-color);
   text-align: left;
-  font-size: 0.7vmin;
+  font-size: 7vmin;
 }
 
 .text-desc {
   color: var(--txt-color);
   text-align: left;
-  font-size: 0.5vmin;
+  font-size: 5vmin;
 }
 
 .heart {
