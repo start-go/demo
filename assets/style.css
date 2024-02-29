@@ -67,7 +67,7 @@ body {
 }
 
 .slide-in-bottom {
-  animation: 500ms ease-in-out 1s slideInFromBottom;
+  animation: slideInFromBottom 500ms ease-in-out;
 }
 
 .cake {
