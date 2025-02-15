@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .float-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .float-button:hover {
+      transform: scale(1.05);
+    }
+
+    .float-button:active {
+      transform: scale(0.95);
+    }
+
+    #player {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- YouTube IFrame API will create the player here -->
+  <div id="player"></div>
+  
+  <button class="float-button" id="playPauseBtn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </svg>
+  </button>
+
+  <script>
+    // Load YouTube IFrame API
+    function loadYouTubeAPI() {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    let player;
+    let isPlaying = false;
+
+    // Create YouTube player when API is ready
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'uvJU3GxUbOY', // Replace with your YouTube video ID
+        playerVars: {
+          'autoplay': 0,
+          'controls': 0,
+          'showinfo': 0,
+          'modestbranding': 1,
+          'loop': 1,
+          'playlist': 'uvJU3GxUbOY' // Same as videoId for looping
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // When player is ready
+    function onPlayerReady(event) {
+      // Player is ready
+      updateButtonIcon();
+    }
+
+    // Handle player state changes
+    function onPlayerStateChange(event) {
+      isPlaying = event.data == YT.PlayerState.PLAYING;
+      updateButtonIcon();
+    }
+
+    // Update button icon based on play state
+    function updateButtonIcon() {
+      const btn = document.getElementById('playPauseBtn');
+      btn.innerHTML = isPlaying 
+        ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+           </svg>`
+        : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+           </svg>`;
+    }
+
+    // Initialize event listeners
+    function initializeEvents() {
+      // Handle play/pause button click
+      document.getElementById('playPauseBtn').addEventListener('click', () => {
+        if (isPlaying) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
+      });
+
+      // Handle tab visibility change
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && isPlaying) {
+          player.pauseVideo();
+        }
+      });
+    }
+
+    // Load YouTube API and initialize events
+    loadYouTubeAPI();
+    initializeEvents();
+  </script>
+</body>
+</html>
